@@ -16,7 +16,7 @@ jobs:
           echo "AWS secret ${{ secrets.AWS_SECRET_KEY }}"
           # Add similar lines for other secrets
       - uses: actions/checkout@v3
-      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      # - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t cygnetops/react-test -f Dockerfile.dev .
       - run: docker run -e CI=true cygnetops/react-test npm test
 
@@ -27,7 +27,7 @@ jobs:
         uses: einaregilsson/beanstalk-deploy@v21
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: crafrontend
           environment_name: Crafrontend-env
           existing_bucket_name: ${{ secrets.S3_BUCKET }}
