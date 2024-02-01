@@ -32,5 +32,5 @@ jobs:
           environment_name: Crafrontend-env
           existing_bucket_name: ${{ secrets.S3_BUCKET }}
           region: us-west-1
-          version_label: 12345
+          version_label: ${{ github.sha }}
           deployment_package: deploy.zip
