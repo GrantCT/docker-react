@@ -12,6 +12,8 @@ jobs:
         run: |
           echo "DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}"
           echo "DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}"
+          echo "AWS key ${{ secrets.AWS_ACCESS_KEY }}"
+          echo "AWS secret ${{ secrets.AWS_SECRET_KEY }}"
           # Add similar lines for other secrets
       - uses: actions/checkout@v3
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
