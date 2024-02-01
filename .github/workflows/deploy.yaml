@@ -6,9 +6,13 @@ on:
 
 jobs:
   build:
-    secrets: inherit
     runs-on: ubuntu-latest
     steps:
+      - name: Debug
+        run: |
+          echo "DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}"
+          echo "DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}"
+          # Add similar lines for other secrets
       - uses: actions/checkout@v3
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t cygnetops/react-test -f Dockerfile.dev .
